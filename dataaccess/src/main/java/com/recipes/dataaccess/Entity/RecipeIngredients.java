@@ -18,11 +18,11 @@ public class RecipeIngredients {
 	@GeneratedValue
 	public Long id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="Recipe_Id")
 	public Recipes recipe;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="Ingredient_Id")
 	public Ingredients ingredient;
 	
@@ -67,6 +67,7 @@ public class RecipeIngredients {
 		return "RecipeIngredients [id=" + id + ", recipe=" + recipe + ", ingredient=" + ingredient + ", quantity="
 				+ quantity + "]";
 	}
+	
 	
 	
 

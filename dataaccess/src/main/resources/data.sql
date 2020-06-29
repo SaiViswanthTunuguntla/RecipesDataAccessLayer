@@ -10,7 +10,7 @@ INSERT into recipes (recipe_id,name,description,image_path) values (205,'Cheese 
 INSERT into ingredients (ingredient_id,name) values (101,'Onions');
 INSERT into ingredients (ingredient_id,name) values (102,'Chillies');
 INSERT into ingredients (ingredient_id,name) values (103,'flakes');
-//INSERT into ingredients (ingredient_id,name) values (104,'pasta'); 
+INSERT into ingredients (ingredient_id,name) values (104,'pasta'); 
 
 INSERT into RECIPE_INGREDIENT  (id,recipe_id,ingredient_id,quantity) values (1001,201,101,3);
 INSERT into RECIPE_INGREDIENT  (id,recipe_id,ingredient_id,quantity) values (1002,201,102,5);

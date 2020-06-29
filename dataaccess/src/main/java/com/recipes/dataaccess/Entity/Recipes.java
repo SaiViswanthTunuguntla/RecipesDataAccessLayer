@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,7 @@ public class Recipes {
 	public String description;
 	public String imagePath;
 	
-	@OneToMany(mappedBy="recipe")
+	@OneToMany(mappedBy="recipe",fetch=FetchType.EAGER,orphanRemoval=true, cascade = CascadeType.ALL)
 	public Set<RecipeIngredients>  recipeIngredients;
 	
 	@Transient
@@ -43,6 +45,7 @@ public class Recipes {
 	}
 	
 	
+	
 	public Set<RecipeIngredients> getRecipeIngredients() {
 		return recipeIngredients;
 	}
@@ -52,6 +55,10 @@ public class Recipes {
 	public void addRecipeIngredients(RecipeIngredients ri)
 	{
 		this.recipeIngredients.add(ri);
+	}
+	public void removeRecipeIngredients(RecipeIngredients ri)
+	{
+		this.recipeIngredients.remove(ri);
 	}
 	
 	
