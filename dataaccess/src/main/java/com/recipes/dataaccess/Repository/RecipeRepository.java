@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -27,14 +28,15 @@ public class RecipeRepository {
 
 	@Autowired
 	EntityManager em;
-
+	
+	//FIND RECIPE BY ID
 	public RecipeDTO findById(long id) {
 		Recipes recipe = em.find(Recipes.class, id);
 		RecipeDTO reccipeDto=new RecipeDTO(recipe.getId(), recipe.getName(), recipe.getDescription(), recipe.getImagePath());
 		RecipeDTO recipeDTO = setIngredients(recipe.getRecipeIngredients(), recipe,reccipeDto);
 		return recipeDTO;
 	}
-
+	//GET ALL RECIPES
 	public List<RecipeDTO> findRecipes() {
 		TypedQuery<Recipes> recipes = em.createQuery("select r from Recipes r", Recipes.class);
 		List<Recipes> resultList = recipes.getResultList();
@@ -45,7 +47,7 @@ public class RecipeRepository {
 		}
 		return finalList;
 	}
-
+	//GET ALL INGREIDENTS
 	public List<Ingredients> getAllIngredients() {
 		TypedQuery<Ingredients> ings = em.createQuery("select r from Ingredients r", Ingredients.class);
 		return ings.getResultList();
@@ -63,9 +65,10 @@ public class RecipeRepository {
 		}
 		em.clear();
 	}
-
+	
+	//INSERT OR UPDATE A RECIPE
 	public void insertRecipe(Recipes recipe) {
-		if (recipe.getId() != null) {//update a  recipe starts
+		if (recipe.getId() != null) {  //update a  recipe starts
 			Recipes retreivedRecipe = em.merge(recipe);
 			
 			List<Ingredients> allIngredients = getAllIngredients();
@@ -101,6 +104,14 @@ public class RecipeRepository {
 					em.persist(reIng);
 				}
 			}
+//			if(recipeIngredients.size()>recipe.getIngredients().size())
+//			{
+//				Predicate<RecipeIngredients> p1=reIng ->{
+//					return false;
+//					
+//				};
+//				recipeIngredients.stream().filter(p1);
+//			}
 		} //update a  recipe ends 
 		//below code to insert a new recipe
 		else {

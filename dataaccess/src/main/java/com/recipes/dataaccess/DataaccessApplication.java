@@ -75,13 +75,13 @@ public class DataaccessApplication implements CommandLineRunner{
 //		recipeRepo.insertRecipe(recipe1);
 		
 		//REMOVE A RECIPE
-		recipeRepo.removeRecipeById(204L);
+		//recipeRepo.removeRecipeById(204L);
 		
 		//FIND ALL RECIPES
-//		 List<RecipeDTO> findRecipes = recipeRepo.findRecipes();
-//		for (RecipeDTO recipeDTO : findRecipes) {
-//			logger.info("Recipes ----------->{}",recipeDTO);
-//		}
+		 List<RecipeDTO> findRecipes = recipeRepo.findRecipes();
+		for (RecipeDTO recipeDTO : findRecipes) {
+			logger.info("Recipes ----------->{}",recipeDTO);
+		}
 		
 	}
 

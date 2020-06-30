@@ -10,7 +10,7 @@ public class RecipeDTO {
 	public String description;
 	public String imagePath;
 	
-	public List<IngredientDTO> ingredients=new ArrayList<>();
+	public List<IngredientDTO> ingredients=new ArrayList();
 
 	public RecipeDTO(Long id, String name, String description, String imagePath) {
 		super();
